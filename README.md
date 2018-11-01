@@ -1,4 +1,4 @@
-![Logo](admin/threema-gw.png)
+![Logo](admin/threema-gw-whitebg.png)
 # ioBroker.threema-gw
 =================
 
