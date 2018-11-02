@@ -43,69 +43,8 @@
         "sender": "",
         "receipient": ""
     },
-    "objects": [
-
-    ],
+    "objects": [],
     "instanceObjects": [
-       {
-            "_id": "communicate.sender",
-            "type": "state",
-            "common": {
-                "name":  "sender id",
-                "type":  "string",
-                "role":  "value",
-                "read":  true,
-                "write": false,
-                "desc":  "ID of sender"
-            },
-            "native": {}
-        },
-        {
-            "_id": "comunicate.receipient",
-            "type": "state",
-            "common": {
-                "name":  "receipient id",
-                "type":  "string",
-                "role":  "value",
-                "read":  true,
-                "write": false,
-                "desc":  "ID of receipient"
-            },
-            "native": {}
-        },
-        {
-            "_id": "communicate.message",
-            "type": "state",
-            "common": {
-                "name":  "message to transmit",
-                "type":  "string",
-                "role":  "value",
-                "read":  true,
-                "write": true,
-                "desc":  "message to send through threema gateway including unicode emoticons"
-            },
-            "native": {}
-        },
-	{
-		"_id": "info",
-		"type": "channel"
-		"common": {
-			"name": "Information"
-		},
-		"native": {}
-	},
-        {
-            "_id": "info.credits",
-            "type": "state",
-            "common": {
-                "name":  "cedits",
-                "type":  "number",
-                "role":  "value",
-                "read":  true,
-                "write": false,
-                "desc":  "remaining credits at threema geateway"
-            },
-            "native": {}
-        }
-    ]
+    
+]
 }
