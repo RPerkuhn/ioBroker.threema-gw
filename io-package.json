@@ -45,6 +45,39 @@
     },
     "objects": [],
     "instanceObjects": [
-    
+    {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "If connected to Telegram server",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },    
+        {
+            "_id": "info.credits",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Number of remaining credits at threema gateway",
+                "type": "number",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
 ]
 }
