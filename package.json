@@ -1,10 +1,10 @@
 {
-  "name": "iobroker.template",
-  "version": "0.6.0",
-  "description": "ioBroker template Adapter",
+  "name": "iobroker.threema-gw",
+  "version": "0.0.1",
+  "description": "ioBroker Threema Gateway Adapter",
   "author": {
-    "name": "@@Author@@",
-    "email": "@@email@@"
+    "name": "Ralf Perkuhn",
+    "email": "ralf.perkuhn@online.de"
   },
   "contributors": [
     {
@@ -12,17 +12,17 @@
       "email": "@@email@@"
     }
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.template",
+  "homepage": "https://github.com/RPerkuhn/ioBroker.threema-gw",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "template",
-    "Smart Home",
-    "home automation"
+    "Threema",
+    "Messenger",
+    "Gateway"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.template"
+    "url": "https://github.com/RPerkuhn/ioBroker.threema-gw"
   },
   "dependencies": {},
   "devDependencies": {
@@ -30,12 +30,12 @@
     "mocha": "^4.1.0",
     "chai": "^4.1.2"
   },
-  "main": "main.js",
+  "main": "threema-gw.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.template/issues"
+    "url": "https://github.com/RPerkuhn/ioBroker.threma-gw/issues"
   },
   "readmeFilename": "README.md"
 }
