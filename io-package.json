@@ -78,6 +78,18 @@
                 "def": false
             },
             "native": {}
+        },
+        {
+            "_id": "communicate.botSendMessageId",
+            "type": "state",
+            "common": {
+                "role": "text",
+                "name": "Message ID of last sent message by the bot",
+                "type": "string",
+                "read": true,
+                "write": false
+            },
+            "native": {}
         }
 ]
 }
