@@ -34,6 +34,7 @@
         "readme": "https://github.com/RPerkuhn/ioBroker.threema-gw/blob/master/README.md",
         "loglevel": "info",
         "type": "messaging",
+	"blockly": true,
         "license": "MIT",
         "messagebox": false
     },
@@ -46,8 +47,8 @@
 
     ],
     "instanceObjects": [
-        {
-            "_id": "sender",
+       {
+            "_id": "communicate.sender",
             "type": "state",
             "common": {
                 "name":  "sender id",
@@ -60,7 +61,7 @@
             "native": {}
         },
         {
-            "_id": "receipient",
+            "_id": "comunicate.receipient",
             "type": "state",
             "common": {
                 "name":  "receipient id",
@@ -73,7 +74,7 @@
             "native": {}
         },
         {
-            "_id": "message",
+            "_id": "communicate.message",
             "type": "state",
             "common": {
                 "name":  "message to transmit",
@@ -85,8 +86,16 @@
             },
             "native": {}
         },
+	{
+		"_id": "info",
+		"type": "channel"
+		"common": {
+			"name": "Information"
+		},
+		"native": {}
+	},
         {
-            "_id": "credits",
+            "_id": "info.credits",
             "type": "state",
             "common": {
                 "name":  "cedits",
