@@ -30,10 +30,10 @@
         "materialize": true,
         "enabled": false,
         "extIcon": "https://raw.githubusercontent.com/RPerkuhn/ioBroker.threema-gw/master/admin/threema-gw.png",
-        "keywords": ["template", "GUI", "graphical", "scada"],
+        "keywords": ["notification", "Threema", "message"],
         "readme": "https://github.com/RPerkuhn/ioBroker.threema-gw/blob/master/README.md",
         "loglevel": "info",
-        "type": "communication",
+        "type": "messaging",
         "license": "MIT",
         "messagebox": false
     },
