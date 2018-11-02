@@ -16,18 +16,20 @@
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "Threema",
-    "Messenger",
-    "Gateway"
+    "messaging",
+    "threema",
+    "gateway"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/RPerkuhn/ioBroker.threema-gw"
   },
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.87.0"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "mocha": "^4.1.0",
+    "mocha": "^5.2.0",
     "chai": "^4.1.2"
   },
   "main": "threema-gw.js",
