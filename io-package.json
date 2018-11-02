@@ -30,7 +30,7 @@
         "materialize": true,
         "enabled": false,
         "extIcon": "https://raw.githubusercontent.com/RPerkuhn/ioBroker.threema-gw/master/admin/threema-gw.png",
-        "keywords": ["notification", "Threema", "message"],
+        "keywords": ["notification", "threema", "message"],
         "readme": "https://github.com/RPerkuhn/ioBroker.threema-gw/blob/master/README.md",
         "loglevel": "info",
         "type": "messaging",
