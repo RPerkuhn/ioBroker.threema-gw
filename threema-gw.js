@@ -101,6 +101,7 @@ function main() {
     // ack should be always set to true if the value is received from or acknowledged from the target system
     adapter.setState('testVariable', {val: true, ack: true});
 
+    adapter.setState('info.connection', {val: true});
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
     //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
