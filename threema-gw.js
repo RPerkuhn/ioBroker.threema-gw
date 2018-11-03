@@ -28,13 +28,18 @@
  *  }
  *
  */
+
+/* jshint -W097 */// jshint strict:false
+/*jslint node: true */
+'use strict';
+
 // you have to require the utils module and call adapter function
 const utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
-const adapter = new utils.Adapter('threema-gw');
+const adapter = new utils.Adapter('template');
 
 /*Variable declaration, since ES6 there are let to declare variables. Let has a more clearer definition where 
 it is available then var.The variable is available inside a block and it's childs, but not outside. 
@@ -50,6 +55,24 @@ adapter.on('unload', function (callback) {
         callback();
     }
 });
+
+// is called if a subscribed object changes
+adapter.on('objectChange', function (id, obj) {
+    // Warning, obj can be null if it was deleted
+    adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+});
+
+// is called if a subscribed state changes
+adapter.on('stateChange', function (id, state) {
+    // Warning, state can be null if it was deleted
+    adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
+
+    // you can use the ack flag to detect if it is status (true) or command (false)
+    if (state && !state.ack) {
+        adapter.log.info('ack is not set!');
+    }
+});
+
 // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
 adapter.on('message', function (obj) {
     if (typeof obj === 'object' && obj.message) {
@@ -62,6 +85,7 @@ adapter.on('message', function (obj) {
         }
     }
 });
+
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
@@ -72,9 +96,9 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config test1: '    + adapter.config.apisecret);
-    adapter.log.info('config test1: '    + adapter.config.from);
-    adapter.log.info('config mySelect: ' + adapter.config.to);
+    adapter.log.info('config test1: '    + adapter.config.test1);
+    adapter.log.info('config test1: '    + adapter.config.test2);
+    adapter.log.info('config mySelect: ' + adapter.config.mySelect);
 
 
     /**
@@ -118,6 +142,8 @@ function main() {
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
     adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
+
+
     // examples for the checkPassword/checkGroup functions
     adapter.checkPassword('admin', 'iobroker', function (res) {
         console.log('check user admin pw ioboker: ' + res);
@@ -126,4 +152,7 @@ function main() {
     adapter.checkGroup('admin', 'admin', function (res) {
         console.log('check group user admin group admin: ' + res);
     });
+
+
+
 }
