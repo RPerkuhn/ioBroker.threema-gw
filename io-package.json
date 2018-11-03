@@ -70,26 +70,14 @@
             "_id": "info.credits",
             "type": "state",
             "common": {
-                "role": "text",
+                "role": "level",
                 "name": "Number of remaining credits at threema gateway",
                 "type": "number",
                 "read": true,
                 "write": false,
-                "def": false
+                "def": 0
             },
             "native": {}
         },
-        {
-            "_id": "communicate.botSendMessageId",
-            "type": "state",
-            "common": {
-                "role": "text",
-                "name": "Message ID of last sent message by the bot",
-                "type": "string",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        }
 ]
 }
