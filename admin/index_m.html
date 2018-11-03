@@ -14,77 +14,45 @@
     <script type="text/javascript" src="words.js"></script>
 
     <script type="text/javascript">
-        var defaultLocation = '';
-        var defaultImperial = false;
-        function load(settings, onChange) {
-            var $language = $('#language');
-            for (var key in settings) {
-                if (!settings.hasOwnProperty(key)) continue;
-                var $value = $('#' + key + '.value');
-                if ($value.attr('type') === 'checkbox') {
-                    $value.prop('checked', settings[key]).on('change', function() {
-                        onChange();
-                    });
-                } else {
-                    $value.val(settings[key]).change(function() {
-                        onChange();
-                    }).on('keyup', function () {
-                        $(this).trigger('change');
-                    })
-                }
+    // the function loadSettings has to exist ...
+    function load(settings, onChange) {
+        // example: select elements with id=key and class=value and insert value
+       if (!settings) return;
+        $('.value').each(function () {            
+            var $key = $(this);
+            var id = $key.attr('id');
+            if ($key.attr('type') === 'checkbox') {
+		        // do not call onChange direct, because onChange could expect some arguments
+                $key.prop('checked', settings[id]).on('change', function() {
+                    onChange();
+                });
+            } else {
+		        // do not call onChange direct, because onChange could expect some arguments
+                $key.val(settings[id]).on('change', function() {
+                    onChange();
+                }).on('keyup', function() {
+                    onChange();
+                });
             }
-            onChange(false);
-            // Setup default language
-            if (!settings.language){
-                $language
-                    .val(systemLang)
-                    .trigger('change').select();
+        });
+        onChange(false);
+        M.updateTextFields();  // function Materialize.updateTextFields(); to reinitialize all the Materialize labels on the page if you are dynamically adding inputs.
+    }
+    // ... and the function save has to exist.
+    // you have to make sure the callback is called with the settings object as first param!
+    function save(callback) {
+        // example: select elements with class=value and build settings object
+        var obj = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            if ($this.attr('type') === 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
             }
-            M.updateTextFields();
-            socket.emit('getObject', 'system.config', function (err, config) {
-                if (config && config.common && !settings.location) {
-                    if (config.common.tempUnit.indexOf('F') !== -1) {
-                        defaultImperial = true;
-                        if (!settings.location) {
-                            $('#imperial').prop('checked', true).trigger('change');
-                        }
-                    } else {
-                        defaultImperial = false;
-                    }
-                }
-                if (config && config.common && config.common.longitude && config.common.latitude) {
-                    defaultLocation = config.common.latitude + ',' + config.common.longitude;
-                    if (!settings.location) {
-                        $('#location').val(config.common.latitude + ',' + config.common.longitude).trigger('change');
-                    }
-                }
-                if (!defaultLocation) {
-                    $('.take-system').hide();
-                } else {
-                    $('.take-system').on('click', function () {
-                        if (defaultLocation !== $('#location').val()) {
-                            $('#location').val(defaultLocation).trigger('change');
-                        }
-                        if ($('#imperial').prop('checked') !== defaultImperial) {
-                            $('#imperial').prop('checked', defaultImperial).trigger('change');
-                        }
-                    });
-                }
-            });
-        }
-        function save(callback) {
-            var settings = {};
-            $('.value').each(function () {
-                var $this = $(this);
-                var id = $this.attr('id');
-                if ($this.attr('type') === 'checkbox') {
-                    settings[id] = $this.prop('checked');
-                } else {
-                    settings[id] = $this.val();
-                }
-            });
-            callback(settings);
-        }
+        });
+        callback(obj);
+    }
     </script>
 </head>
 <body>
