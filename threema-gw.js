@@ -58,9 +58,9 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    adapter.log.info('config API Secret: '    + adapter.config.apisecret);
-    adapter.log.info('config Threema send from: '    + adapter.config.from);
-    adapter.log.info('config Threema send to: ' + adapter.config.to);
+    // adapter.log.info('config API Secret: '    + adapter.config.apisecret);
+    // adapter.log.info('config Threema send from: '    + adapter.config.from);
+    // adapter.log.info('config Threema send to: ' + adapter.config.to);
 
 
     /**
@@ -73,12 +73,12 @@ function main() {
      *
      */
 
-    adapter.setObject('testVariable', {
+    adapter.setObject('SendMessage', {
         type: 'state',
         common: {
             name: 'testVariable',
-            type: 'boolean',
-            role: 'indicator'
+            type: 'string',
+            role: 'text'
         },
         native: {}
     });
@@ -99,9 +99,10 @@ function main() {
 
     // same thing, but the value is flagged "ack"
     // ack should be always set to true if the value is received from or acknowledged from the target system
-    adapter.setState('testVariable', {val: true, ack: true});
+    // adapter.setState('testVariable', {val: true, ack: true});
 
     adapter.setState('info.connection', {val: true});
+    adapter.setState('info.credits', {val: -99});
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
     //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
