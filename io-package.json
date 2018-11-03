@@ -58,7 +58,7 @@
             "type": "state",
             "common": {
                 "role": "indicator.connected",
-                "name": "If connected to Telegram server",
+                "name": "If connected to Threema server",
                 "type": "boolean",
                 "read": true,
                 "write": false,
@@ -70,7 +70,7 @@
             "_id": "info.credits",
             "type": "state",
             "common": {
-                "role": "indicator.connected",
+                "role": "text",
                 "name": "Number of remaining credits at threema gateway",
                 "type": "number",
                 "read": true,
