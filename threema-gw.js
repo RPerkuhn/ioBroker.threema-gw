@@ -48,6 +48,11 @@ adapter.on('message', function (obj) {
     }
 });
 
+var ThreemaRequest = require('request');
+var ThreemaSecret, ThreemaFrom, ThreemaTo, ThreemaText;
+
+const ThreemaURL='https://msgapi.threema.ch';
+
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
@@ -106,5 +111,48 @@ function main() {
     // same thing, but the state is deleted after 30s (getState will return null afterwards)
     //adapter.setState('testVariable', {val: true, ack: true, expire: 30});
 
+
+}
+
+function GetThreemaGWCredits(){
+    var error, response, result;
+    try {
+        ThreemaRequest(ThreemaGatewayCall, function (error, response, result) {
+            switch(response.statusCode){
+                case 200:
+                    console.log("200 - connection successful");
+                    console.log(result);    //amount of credits at Threema gateway
+                    console.log(true);  //connection to Threema gateway established
+                    break;
+                case 401:
+                    console.log("401 - API identity or secret are incorrect");
+                    console.log(-999);    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
+                    console.log(false);  //connection to Threema gateway established
+                    break;
+                case 402:
+                    console.log("402 - no credits remain");
+                    console.log(0);    //amount of credits at Threema gateway
+                    console.log(true);  //connection to Threema gateway established
+                    break;
+                case 404:
+                    console.log("404 - using phone or email as the recipient specifier, and the corresponding recipient could not be found");
+                    console.log(true);  //connection to Threema gateway established
+                    break;
+                case 413:
+                    console.log("413 - the message is too long");
+                    console.log(true);  //connection to Threema gateway established
+                    break;
+                case 500:
+                    console.log("500 - a temporary internal server error occurs");
+                    console.log(false);  //connection to Threema gateway established
+                    break;
+                default:
+                    console.log("000 - undefined");
+                    console.log(-999);    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
+                    console.log(false); //connection to Threema gateway established
+            }
+            }).on("error", function (e) {console.error(e);});
+        } 
+        catch (e) { console.error(e); }
 
 }
