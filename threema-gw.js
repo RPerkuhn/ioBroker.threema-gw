@@ -63,11 +63,14 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    // adapter.log.info('config API Secret: '    + adapter.config.apisecret);
-    // adapter.log.info('config Threema send from: '    + adapter.config.from);
-    // adapter.log.info('config Threema send to: ' + adapter.config.to);
-
-
+    ThreemaSecret = adapter.config.apisecret);
+    ThreemaFrom = adapter.config.from;
+    ThreemaTo = adapter.config.to);
+    adapter.log.info('config API Secret: '    + ThreemaSecret);
+    adapter.log.info('config Threema send from: '    + ThreemaFrom);
+    adapter.log.info('config Threema send to: ' + ThreemaTo);
+    
+    
     /**
      *
      *      For every state in the system there has to be also an object of type state
@@ -115,41 +118,41 @@ function main() {
 }
 
 function GetThreemaGWCredits(){
-    var error, response, result;
+    var error, response, result, ;
     try {
         ThreemaRequest(ThreemaGatewayCall, function (error, response, result) {
             switch(response.statusCode){
                 case 200:
-                    console.log("200 - connection successful");
-                    console.log(result);    //amount of credits at Threema gateway
-                    console.log(true);  //connection to Threema gateway established
+                    adapter.log.info("200 - connection successful");
+                    adapter.log.info(result);    //amount of credits at Threema gateway
+                    adapter.log.info(true);  //connection to Threema gateway established
                     break;
                 case 401:
-                    console.log("401 - API identity or secret are incorrect");
-                    console.log(-999);    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
-                    console.log(false);  //connection to Threema gateway established
+                    adapter.log.info("401 - API identity or secret are incorrect");
+                    adapter.log.info(-999);    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
+                    adapter.log.info(false);  //connection to Threema gateway established
                     break;
                 case 402:
-                    console.log("402 - no credits remain");
-                    console.log(0);    //amount of credits at Threema gateway
-                    console.log(true);  //connection to Threema gateway established
+                    adapter.log.info("402 - no credits remain");
+                    adapter.log.info(0);    //amount of credits at Threema gateway
+                    adapter.log.info(true);  //connection to Threema gateway established
                     break;
                 case 404:
-                    console.log("404 - using phone or email as the recipient specifier, and the corresponding recipient could not be found");
-                    console.log(true);  //connection to Threema gateway established
+                    adapter.log.info("404 - using phone or email as the recipient specifier, and the corresponding recipient could not be found");
+                    adapter.log.info(true);  //connection to Threema gateway established
                     break;
                 case 413:
-                    console.log("413 - the message is too long");
-                    console.log(true);  //connection to Threema gateway established
+                    adapter.log.info("413 - the message is too long");
+                    adapter.log.info(true);  //connection to Threema gateway established
                     break;
                 case 500:
-                    console.log("500 - a temporary internal server error occurs");
-                    console.log(false);  //connection to Threema gateway established
+                    adapter.log.info("500 - a temporary internal server error occurs");
+                    adapter.log.info(false);  //connection to Threema gateway established
                     break;
                 default:
-                    console.log("000 - undefined");
-                    console.log(-999);    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
-                    console.log(false); //connection to Threema gateway established
+                    adapter.log.info("000 - undefined");
+                    adapter.log.info(-999);    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
+                    adapter.log.info(false); //connection to Threema gateway established
             }
             }).on("error", function (e) {console.error(e);});
         } 
