@@ -44,13 +44,14 @@ adapter.on('message', function (obj) {
         if (obj.command === 'send') {
             // e.g. send email or pushover or whatever
             adapter.log.info('send via Threema gateway: ' + obj.message);
+            SendThreemaSimpleMessage(obj)
         }
     }
 });
 
 
 var ThreemaRequest = require('request');
-var ThreemaSecret, ThreemaFrom, ThreemaTo, ThreemaText;
+var ThreemaSecret, ThreemaFrom, ThreemaTo;
 
 const ThreemaURL='https://msgapi.threema.ch';
 
@@ -66,11 +67,11 @@ function main() {
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
 
-   // adapter.log.info('config API Secret: '    + ThreemaSecret);
-   // adapter.log.info('config Threema send from: '    + ThreemaFrom);
-   // adapter.log.info('config Threema send to: ' + ThreemaTo);
-    
-    
+    // adapter.log.info('config API Secret: '    + ThreemaSecret);
+    // adapter.log.info('config Threema send from: '    + ThreemaFrom);
+    // adapter.log.info('config Threema send to: ' + ThreemaTo);
+
+
     /**
      *
      *      For every state in the system there has to be also an object of type state
@@ -81,15 +82,15 @@ function main() {
      *
      */
 
-   /* adapter.setObject('SendMessage', {
-        type: 'state',
-        common: {
-            name: 'testVariable',
-            type: 'string',
-            role: 'text'
-        },
-        native: {}
-    });*/
+    /* adapter.setObject('SendMessage', {
+         type: 'state',
+         common: {
+             name: 'testVariable',
+             type: 'string',
+             role: 'text'
+         },
+         native: {}
+     });*/
 
     // in this template all states changes inside the adapters namespace are subscribed
     // adapter.subscribeStates('*');
@@ -118,14 +119,14 @@ function main() {
 }
 
 function GetThreemaGWCredits(){
-    var error, response, result,responseFromAPI;
+    var error, response, result, responseFromAPI;
     ThreemaSecret = adapter.config.apisecret;
     ThreemaFrom = adapter.config.from;
     ThreemaTo = adapter.config.to;
     let ThreemaGatewayCall = ThreemaURL +
-    '/credits' +
-    '?from=' + ThreemaFrom +
-    '&secret=' + ThreemaSecret;
+        '/credits' +
+        '?from=' + ThreemaFrom +
+        '&secret=' + ThreemaSecret;
     try {
         ThreemaRequest(ThreemaGatewayCall, function (error, response, result) {
             switch(response.statusCode){
@@ -164,23 +165,29 @@ function GetThreemaGWCredits(){
             adapter.log.info(responseFromAPI);
             adapter.setState('info.lastresponse', {val: responseFromAPI});
 
-            }).on("error", function (e) {console.error(e);});
-        } 
-        catch (e) { console.error(e); }
+        }).on("error", function (e) {console.error(e);});
+    }
+    catch (e) { console.error(e); }
 
 }
 
-function SendThreemaSimpleMessage(){
-let ThreemaGatewaySendSimple = ThreemaURL + '/send_simple';
-let formdata = {
-    from:ThreemaFrom,
-    to:ThreemaTo,
-    text:ThreemaText,
-    secret:ThreemaSecret
+function SendThreemaSimpleMessage(obj){
+    var error, response, result, responseFromAPI;
+    ThreemaSecret = adapter.config.apisecret;
+    ThreemaFrom = adapter.config.from;
+    ThreemaTo = adapter.config.to;
+    let ThreemaText = obj.message
+    //adapter.log.info(ThreemaText);
+    let ThreemaGatewaySendSimple = ThreemaURL + '/send_simple';
+    let formdata = {
+        from:ThreemaFrom,
+        to:ThreemaTo,
+        text:ThreemaText,
+        secret:ThreemaSecret
     };
-    
+    adapter.log.info(ThreemaGatewaySendSimple);
     try {
-        request.post({url:ThreemaGatewaySendSimple, form: formdata}, function (error, response, result) {
+        ThreemaRequest.post({url:ThreemaGatewaySendSimple, form: formdata}, function (error, response, result) {
             switch(response.statusCode){
                 case 200:
                     responseFromAPI = '200 - connection successful';
@@ -193,7 +200,7 @@ let formdata = {
                     adapter.setState('info.connection', {val: false});  //connection to Threema gateway established
                     break;
                 case 402:
-                    aresponseFromAPI = '402 - no credits remain';
+                    responseFromAPI = '402 - no credits remain';
                     adapter.setState('info.credits', {val: 0});    //amount of credits at Threema gateway
                     adapter.setState('info.connection', {val: true});  //connection to Threema gateway established
                     break;
@@ -216,8 +223,8 @@ let formdata = {
             }
             adapter.log.info(responseFromAPI);
             adapter.setState('info.lastresponse', {val: responseFromAPI});
-            }).on("error", function (e) {console.error(e);});
-        } 
-        catch (e) { console.error(e); }
+        }).on("error", function (e) {adapter.log.error(e);});
+    }
+    catch (e) { console.error(e); }
 
 }
