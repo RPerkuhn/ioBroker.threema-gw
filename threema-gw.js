@@ -160,7 +160,7 @@ function GetThreemaGWCredits(){
                     adapter.setState('info.credits', {val: -999});    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
                     adapter.setState('info.connection', {val: false}); //connection to Threema gateway established
             }
-            adapter.log.info(adapter.getstate('info.lastresponse');
+            adapter.log.info(adapter.getstate('info.lastresponse'));
             }).on("error", function (e) {console.error(e);});
         } 
         catch (e) { console.error(e); }
