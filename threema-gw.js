@@ -52,9 +52,6 @@ var ThreemaRequest = require('request');
 var ThreemaSecret, ThreemaFrom, ThreemaTo, ThreemaText;
 
 const ThreemaURL='https://msgapi.threema.ch';
-ThreemaSecret = adapter.config.apisecret;
-ThreemaFrom = adapter.config.from;
-ThreemaTo = adapter.config.to;
 
 // is called when databases are connected and adapter received configuration.
 // start here!
@@ -121,6 +118,9 @@ function main() {
 
 function GetThreemaGWCredits(){
     var error, response, result;
+    ThreemaSecret = adapter.config.apisecret;
+    ThreemaFrom = adapter.config.from;
+    ThreemaTo = adapter.config.to;
     let ThreemaGatewayCall = ThreemaURL +
     '/credits' +
     '?from=' + ThreemaFrom +
