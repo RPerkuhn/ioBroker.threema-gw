@@ -21,7 +21,7 @@ adapter.on('unload', function (callback) {
     }
 });
 
-// is called if a subscribed object changes
+/*// is called if a subscribed object changes
 adapter.on('objectChange', function (id, obj) {
     // Warning, obj can be null if it was deleted
     adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
@@ -36,17 +36,14 @@ adapter.on('stateChange', function (id, state) {
     if (state && !state.ack) {
         //adapter.log.info('ack is not set!');
     }
-});
+});*/
 
 // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
 adapter.on('message', function (obj) {
     if (typeof obj === 'object' && obj.message) {
         if (obj.command === 'send') {
             // e.g. send email or pushover or whatever
-            adapter.log.info('send command');
-
-            // Send response in callback if required
-            if (obj.callback) adapter.sendTo(obj.from, obj.command, 'Message received', obj.callback);
+            adapter.log.info('send via Threema gateway: ' + obj.message);
         }
     }
 });
@@ -84,7 +81,7 @@ function main() {
      *
      */
 
-    adapter.setObject('SendMessage', {
+   /* adapter.setObject('SendMessage', {
         type: 'state',
         common: {
             name: 'testVariable',
@@ -92,10 +89,10 @@ function main() {
             role: 'text'
         },
         native: {}
-    });
+    });*/
 
     // in this template all states changes inside the adapters namespace are subscribed
-    adapter.subscribeStates('*');
+    // adapter.subscribeStates('*');
 
 
     /**
