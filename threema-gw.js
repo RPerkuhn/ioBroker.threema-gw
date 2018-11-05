@@ -118,7 +118,7 @@ function main() {
 }
 
 function GetThreemaGWCredits(){
-    var error, response, result, ;
+    var error, response, result;
     try {
         ThreemaRequest(ThreemaGatewayCall, function (error, response, result) {
             switch(response.statusCode){
