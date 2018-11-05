@@ -78,8 +78,8 @@
                 "def": false
             },
             "native": {}
-        }
-	            {
+        },
+	{
             "_id": "info.lastresponse",
             "type": "state",
             "common": {
