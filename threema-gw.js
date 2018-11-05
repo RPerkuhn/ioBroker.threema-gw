@@ -11,6 +11,9 @@ let variable = 1234;
 // is called when adapter shuts down - callback has to be called under any circumstances!
 adapter.on('unload', function (callback) {
     try {
+        adapter.setState('info.connection', {val: false}); //connection to Threema gateway not established
+        adapter.setState('info.credits', {val: -999});    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
+        adapter.setState('info.lastresponse', {val: 'adapter is not running'});
         adapter.log.info('cleaned everything up...');
         callback();
     } catch (e) {
@@ -65,9 +68,9 @@ function main() {
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
 
-    adapter.log.info('config API Secret: '    + ThreemaSecret);
-    adapter.log.info('config Threema send from: '    + ThreemaFrom);
-    adapter.log.info('config Threema send to: ' + ThreemaTo);
+   // adapter.log.info('config API Secret: '    + ThreemaSecret);
+   // adapter.log.info('config Threema send from: '    + ThreemaFrom);
+   // adapter.log.info('config Threema send to: ' + ThreemaTo);
     
     
     /**
@@ -117,7 +120,7 @@ function main() {
 }
 
 function GetThreemaGWCredits(){
-    var error, response, result;
+    var error, response, result,responseFromAPI;
     ThreemaSecret = adapter.config.apisecret;
     ThreemaFrom = adapter.config.from;
     ThreemaTo = adapter.config.to;
@@ -129,38 +132,40 @@ function GetThreemaGWCredits(){
         ThreemaRequest(ThreemaGatewayCall, function (error, response, result) {
             switch(response.statusCode){
                 case 200:
-                    adapter.setState('info.lastresponse', {val: '200 - connection successful'});
+                    responseFromAPI = '200 - connection successful';
                     adapter.setState('info.credits', {val: result});    //amount of credits at Threema gateway
                     adapter.setState('info.connection', {val: true});  //connection to Threema gateway established
                     break;
                 case 401:
-                    adapter.setState('info.lastresponse', {val: '401 - API identity or secret are incorrect'});
+                    responseFromAPI = '401 - API identity or secret are incorrect';
                     adapter.setState('info.credits', {val: -999});    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
                     adapter.setState('info.connection', {val: false});  //connection to Threema gateway established
                     break;
                 case 402:
-                    adapter.setState('info.lastresponse', {val: '402 - no credits remain'});
+                    aresponseFromAPI = '402 - no credits remain';
                     adapter.setState('info.credits', {val: 0});    //amount of credits at Threema gateway
                     adapter.setState('info.connection', {val: true});  //connection to Threema gateway established
                     break;
                 case 404:
-                    adapter.setState('info.lastresponse', {val: '404 - using phone or email as the recipient specifier, and the corresponding recipient could not be found'});
+                    responseFromAPI = '404 - using phone or email as the recipient specifier, and the corresponding recipient could not be found';
                     adapter.setState('info.connection', {val: true});  //connection to Threema gateway established
                     break;
                 case 413:
-                    adapter.setState('info.lastresponse', {val: '413 - the message is too long'});
+                    responseFromAPI = '413 - the message is too long';
                     adapter.setState('info.connection', {val: true});  //connection to Threema gateway established
                     break;
                 case 500:
-                    adapter.setState('info.lastresponse', {val: '500 - a temporary internal server error occurs'});
-                    adapter.setState('info.connection', {val: false});  //connection to Threema gateway established
+                    responseFromAPI = '500 - a temporary internal server error occurs';
+                    adapter.setState('info.connection', {val: false});  //connection to Threema gateway not established
                     break;
                 default:
-                    adapter.setState('info.lastresponse', {val: '000 - undefined'});
+                    responseFromAPI = '000 - undefined';
                     adapter.setState('info.credits', {val: -999});    //set credits at Threema gateway to a defaul value (-999 = 'unknown')
-                    adapter.setState('info.connection', {val: false}); //connection to Threema gateway established
+                    adapter.setState('info.connection', {val: false}); //connection to Threema gateway not established
             }
-            adapter.log.info(adapter.getstate.info.lastresponse);
+            adapter.log.info(responseFromAPI);
+            adapter.setState('info.lastresponse', {val: responseFromAPI});
+
             }).on("error", function (e) {console.error(e);});
         } 
         catch (e) { console.error(e); }
