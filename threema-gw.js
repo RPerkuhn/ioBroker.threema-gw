@@ -121,6 +121,10 @@ function main() {
 
 function GetThreemaGWCredits(){
     var error, response, result;
+    let ThreemaGatewayCall = ThreemaURL +
+    '/credits' +
+    '?from=' + ThreemaFrom +
+    '&secret=' + ThreemaSecret;
     try {
         ThreemaRequest(ThreemaGatewayCall, function (error, response, result) {
             switch(response.statusCode){
