@@ -31,7 +31,7 @@ adapter.on('stateChange', function (id, state) {
 
     // you can use the ack flag to detect if it is status (true) or command (false)
     if (state && !state.ack) {
-        adapter.log.info('ack is not set!');
+        //adapter.log.info('ack is not set!');
     }
 });
 
@@ -70,7 +70,7 @@ function main() {
     adapter.log.info('config Threema send from: '    + ThreemaFrom);
     adapter.log.info('config Threema send to: ' + ThreemaTo);
     
-    
+    GetThreemaGWCredits()
     /**
      *
      *      For every state in the system there has to be also an object of type state
