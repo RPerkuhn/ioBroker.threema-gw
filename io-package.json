@@ -36,7 +36,7 @@
         "type": "messaging",
 	"blockly": true,
         "license": "MIT",
-        "messagebox": false
+        "messagebox": true
     },
     "native": {
         "apikey": "",
