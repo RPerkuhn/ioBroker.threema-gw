@@ -52,10 +52,14 @@ var ThreemaRequest = require('request');
 var ThreemaSecret, ThreemaFrom, ThreemaTo, ThreemaText;
 
 const ThreemaURL='https://msgapi.threema.ch';
+ThreemaSecret = adapter.config.apisecret;
+ThreemaFrom = adapter.config.from;
+ThreemaTo = adapter.config.to;
 
 // is called when databases are connected and adapter received configuration.
 // start here!
 adapter.on('ready', function () {
+    GetThreemaGWCredits();
     main();
 });
 
@@ -63,14 +67,12 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    ThreemaSecret = adapter.config.apisecret;
-    ThreemaFrom = adapter.config.from;
-    ThreemaTo = adapter.config.to;
+
     adapter.log.info('config API Secret: '    + ThreemaSecret);
     adapter.log.info('config Threema send from: '    + ThreemaFrom);
     adapter.log.info('config Threema send to: ' + ThreemaTo);
     
-    GetThreemaGWCredits()
+    
     /**
      *
      *      For every state in the system there has to be also an object of type state
