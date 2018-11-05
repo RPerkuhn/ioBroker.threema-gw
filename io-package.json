@@ -79,5 +79,18 @@
             },
             "native": {}
         }
+	            {
+            "_id": "info.lastresponse",
+            "type": "state",
+            "common": {
+                "role": "level",
+                "name": "Last response from threema gateway",
+                "type": "string",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
 ]
 }
