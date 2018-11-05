@@ -63,9 +63,9 @@ function main() {
 
     // The adapters config (in the instance object everything under the attribute "native") is accessible via
     // adapter.config:
-    ThreemaSecret = adapter.config.apisecret);
+    ThreemaSecret = adapter.config.apisecret;
     ThreemaFrom = adapter.config.from;
-    ThreemaTo = adapter.config.to);
+    ThreemaTo = adapter.config.to;
     adapter.log.info('config API Secret: '    + ThreemaSecret);
     adapter.log.info('config Threema send from: '    + ThreemaFrom);
     adapter.log.info('config Threema send to: ' + ThreemaTo);
