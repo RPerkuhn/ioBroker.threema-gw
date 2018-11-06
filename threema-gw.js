@@ -20,8 +20,9 @@ adapter.on('message', function (obj) {
     if (typeof obj === 'object' && obj.message) {
         if (obj.command === 'send') {
             // sendto command received
-            adapter.log.info('send via Threema gateway: ' + obj.message);
+            // adapter.log.info('send via Threema gateway: ' + obj.message);
             SendThreemaSimpleMessage(obj)
+            GetThreemaGWCredits(false);
         }
     }
 });
@@ -33,7 +34,7 @@ const ThreemaURL='https://msgapi.threema.ch';
 
 // start here!
 adapter.on('ready', function () {
-    GetThreemaGWCredits();
+    GetThreemaGWCredits(true);
     main();
 });
 
@@ -41,7 +42,7 @@ function main() {
 
 }
 
-function GetThreemaGWCredits(){
+function GetThreemaGWCredits(firstTime){
     var error, response, result, responseFromAPI;
     ThreemaSecret = adapter.config.apisecret;
     ThreemaFrom = adapter.config.from;
@@ -86,7 +87,7 @@ function GetThreemaGWCredits(){
                     adapter.setState('info.connection', {val: false}); //connection to Threema gateway not established
             }
             adapter.log.info(responseFromAPI);
-            adapter.setState('info.lastresponse', {val: responseFromAPI});
+            if (firstTime) {adapter.setState('info.lastresponse', {val: responseFromAPI})};
 
         }).on("error", function (e) {console.error(e);});
     }
