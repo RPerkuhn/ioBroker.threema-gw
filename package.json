@@ -1,6 +1,6 @@
 {
   "name": "iobroker.threema-gw",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ioBroker Threema Gateway Adapter",
   "author": {
     "name": "Ralf Perkuhn",
@@ -8,8 +8,8 @@
   },
   "contributors": [
     {
-      "name": "@@Author@@",
-      "email": "@@email@@"
+      "name": "RPerkuhn",
+      "email": "ralf.perkuhn@online.de"
     }
   ],
   "homepage": "https://github.com/RPerkuhn/ioBroker.threema-gw",

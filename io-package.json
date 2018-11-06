@@ -1,12 +1,16 @@
 {
     "common": {
         "name": "threema-gw",
-        "version": "0.0.1",
+        "version": "0.1.0",
         "news": {
-            "0.0.1": {
+	    "0.1.0": {
+                "en": "first alpha version",
+                "de": "erste Alpha-Version"
+		}
+	    "0.0.1": {
                 "en": "initial adapter",
                 "de": "Initiale Version"
-            }
+		}
         },
 		"title": "Threema gateway",
         "titleLang": {
@@ -18,7 +22,7 @@
             "de": "Adapter zum senden von Benachrichtigungen über Threema Gateway"
         },
         "authors": [
-            "@@Author@@ <@@email@@>"
+            "RPerkuhn <ralf.perkuhn@online.de>"
         ],
         "docs": {
             "en": "docs/en/admin.md",
