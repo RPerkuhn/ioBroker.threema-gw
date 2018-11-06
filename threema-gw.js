@@ -150,5 +150,4 @@ function SendThreemaSimpleMessage(obj){
         }).on("error", function (e) {adapter.log.error(e);});
     }
     catch (e) { console.error(e); }
-
 }
