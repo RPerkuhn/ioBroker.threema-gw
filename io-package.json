@@ -38,7 +38,7 @@
         "readme": "https://github.com/RPerkuhn/ioBroker.threema-gw/blob/master/README.md",
         "loglevel": "info",
         "type": "messaging",
-	"blockly": true,
+	"blockly": false,
         "license": "MIT",
         "messagebox": true
     },
