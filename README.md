@@ -17,7 +17,8 @@ If you need more receipients you can activate further instances and configure th
 
 Once configured you can send out alert- or info messages including emoticons and linebreaks ("\n")
 
-Usage
+##Usage
+
 To send a threema-message from ScriptEngine just write:
 
 // simple message using instance 0 of threema-gw
