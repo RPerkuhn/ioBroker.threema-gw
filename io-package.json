@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "threema-gw",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
+		"0.1.1": {
+                "en": "added blockly function",
+                "de": "Blockly Funktion hinzugefügt"
+		},
 	    "0.1.0": {
                 "en": "first alpha version",
                 "de": "erste Alpha-Version"
@@ -38,7 +42,7 @@
         "readme": "https://github.com/RPerkuhn/ioBroker.threema-gw/blob/master/README.md",
         "loglevel": "info",
         "type": "messaging",
-	"blockly": false,
+	"blockly": true,
         "license": "MIT",
         "messagebox": true
     },

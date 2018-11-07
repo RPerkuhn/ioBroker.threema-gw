@@ -31,6 +31,8 @@ sendto('threema-gw.0','😊\nThe temperature outside is above 25℃');
 ```
 
 ## Changelog
+### 0.1.1 (2018-11-07)
+* (RPerkuhn) Blockly integration for "Sendto" blocks
 
 ### 0.1.0 (2018-11-06)
 * (RPerkuhn) first alpha release
