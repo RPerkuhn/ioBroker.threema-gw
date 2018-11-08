@@ -23,14 +23,17 @@ To send a threema-message from ScriptEngine just write:
 
 ```javascript
 // simple message using instance 0 of threema-gw
-sendto('threema-gw.0','The battery in motion detector is low');
+sendto('threema-gw.0','send','The battery in motion detector is low');
 
 // message including emoticon, linebreak and special character using instance 0 of threema-gw
-sendto('threema-gw.0','😊\nThe temperature outside is above 25℃');
+sendto('threema-gw.0','send','😊\nThe temperature outside is above 25℃');
 
 ```
 
 ## Changelog
+### 0.1.2 (2018-11-08)
+* (RPerkuhn) Support of linebreaks inside Blockly using \n
+
 ### 0.1.1 (2018-11-07)
 * (RPerkuhn) Blockly integration for "Sendto" blocks
 

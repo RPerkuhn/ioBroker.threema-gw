@@ -87,8 +87,7 @@ Blockly.JavaScript['threema-gw'] = function(block) {
     var logLevel = block.getFieldValue('LOG');
     var message  = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
 
-    var text = message;
-    //var text = message.replace(/\\n/g,'\n');
+    var text = message.replace(/\\n/g,'\n');
 
     var logText;
 
@@ -98,6 +97,6 @@ Blockly.JavaScript['threema-gw'] = function(block) {
         logText = '';
     }
 
-    return "sendTo('threema-gw" + dropdown_instance + "', 'send', " + text + ");\n" + logText;
+    return "sendTo('threema-gw" + dropdown_instance + "', " + text + ");\n" + logText;
 };
 

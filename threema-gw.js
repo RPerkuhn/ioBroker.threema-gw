@@ -100,7 +100,7 @@ function SendThreemaSimpleMessage(obj){
     ThreemaSecret = adapter.config.apisecret;
     ThreemaFrom = adapter.config.from;
     ThreemaTo = adapter.config.to;
-    let ThreemaText = obj.message
+    let ThreemaText = obj.message.replace(/\\n/g,'\n')
     //adapter.log.info(ThreemaText);
     let ThreemaGatewaySendSimple = ThreemaURL + '/send_simple';
     let formdata = {

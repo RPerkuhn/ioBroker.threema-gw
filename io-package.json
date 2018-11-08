@@ -1,9 +1,13 @@
 {
     "common": {
         "name": "threema-gw",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "news": {
-		"0.1.1": {
+            "0.1.2": {
+                "en": "added linbreak function in blockly",
+                "de": "Zeilenumbruch-Funktion in Blockly hinzugefï¿½gt"
+                },
+	    "0.1.1": {
                 "en": "added blockly function",
                 "de": "Blockly Funktion hinzugefügt"
 		},
