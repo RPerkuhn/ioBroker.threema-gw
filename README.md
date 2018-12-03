@@ -32,6 +32,9 @@ sendto('threema-gw.0','send','😊\nThe temperature outside is above 25℃');
 
 ## Changelog
 ### 0.1.2 (2018-11-08)
+* (RPerkuhn) Minor improvements
+
+### 0.1.2 (2018-11-08)
 * (RPerkuhn) Support of linebreaks inside Blockly using \n
 
 ### 0.1.1 (2018-11-07)
