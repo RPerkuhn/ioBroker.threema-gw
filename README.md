@@ -31,7 +31,7 @@ sendto('threema-gw.0','send','😊\nThe temperature outside is above 25℃');
 ```
 
 ## Changelog
-### 0.1.2 (2018-11-08)
+### 0.1.3 (2018-11-08)
 * (RPerkuhn) Minor improvements
 
 ### 0.1.2 (2018-11-08)
