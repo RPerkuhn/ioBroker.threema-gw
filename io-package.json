@@ -1,13 +1,17 @@
 {
     "common": {
         "name": "threema-gw",
-        "version": "0.1.2",
+        "version": "0.1.3",
         "news": {
+            "0.1.3": {
+                "en": "some minor improvements",
+                "de": "Kleine Korrekturen"
+                },
             "0.1.2": {
                 "en": "added linbreak function in blockly",
                 "de": "Zeilenumbruch-Funktion in Blockly hinzugefï¿½gt"
                 },
-	    "0.1.1": {
+			"0.1.1": {
                 "en": "added blockly function",
                 "de": "Blockly Funktion hinzugefügt"
 		},
@@ -46,7 +50,7 @@
         "readme": "https://github.com/RPerkuhn/ioBroker.threema-gw/blob/master/README.md",
         "loglevel": "info",
         "type": "messaging",
-	"blockly": true,
+		"blockly": true,
         "license": "MIT",
         "messagebox": true
     },

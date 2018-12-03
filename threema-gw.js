@@ -1,3 +1,4 @@
+//version 0.1.3
 'use strict';
 const utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
 const adapter = new utils.Adapter('threema-gw');
